@@ -27,8 +27,8 @@ spring:
     redis:
       host: localhost
       port: 6379
-      password: 1qaz@WSX
-      database: 5
+#      password: 1qaz@WSX
+      database: 6
       timeout: 10s
       lettuce:
         pool:

@@ -229,7 +229,7 @@ public class FreemarkerUtils {
             .setTableComment(reqCode.getTableComment()).setIdType(idType);
         codeInfo.setTableInfo(tableExpand.setFieldExpands(expandList));
 
-        // 递归调用以获取最终的代码信息列表
+        // 获取最终的代码信息列表
         return getCode(codeInfo);
     }
 
@@ -257,13 +257,18 @@ public class FreemarkerUtils {
      * 获取生成的代码并返回前端
      *
      * @param codeInfo 代码参数信息
-     * @return
+     * @return 代码列表
      */
     public List<CodeVo> getCode(CodeInfo codeInfo) {
+        // 代码列表
         List<CodeVo> list = new ArrayList<>();
+        // 构建正则替换Map
         Map<String, String> regexMap = buildRegexMap(codeInfo);
+        // 遍历模板文件
         for (String key : freemarkerProperties.getKeys()) {
+            // 代码相关信息对象
             CodeVo codeVo = new CodeVo();
+            // 替换变量
             String path = replaceVariable(key, regexMap);
             int index = path.lastIndexOf("/");
             String tempName = path.substring(index + 1).replace(".ftl", "");
@@ -326,20 +331,26 @@ public class FreemarkerUtils {
     /**
      * 模版代码构建
      *
-     * @param template
-     * @param codeInfo
-     * @return
+     * @param template 模板
+     * @param codeInfo 代码信息
+     * @return 代码
      */
     public String buildCode(String template, CodeInfo codeInfo) {
+        // 创建一个StringWriter对象，用于输出生成的代码
         StringWriter stringWriter = new StringWriter();
+        // 使用try-with-resources语句，确保Writer对象在代码执行完毕后被关闭
         try (Writer out = new BufferedWriter(stringWriter)) {
+            // 获取模板
             Template temp = fmConfig.getTemplate(template, "utf-8");
+            // 使用模板生成代码
             temp.process(codeInfo, out);
+            // 刷新输出流
             out.flush();
         } catch (IOException | TemplateException e) {
             log.error("生成代码异常:" + e.getMessage(), e);
             throw new MyRuntimeException(e);
         }
+        // 返回生成的代码
         return stringWriter.toString();
     }
 
