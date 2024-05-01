@@ -32,6 +32,8 @@ public interface SsoUserService extends IService<SsoUser> {
 
     SsoUser getUserByAccount(String account);
 
+    List<String> getUserIdsByAccounts(List<String> accounts);
+
     SsoUser getUserById(String userId);
 
     UserInfo getUserByIdNoPwd(String userId);
@@ -52,6 +54,8 @@ public interface SsoUserService extends IService<SsoUser> {
     List<TenantVo> getUserTenants(String userId);
 
     Result<List<SsoOrg>> getOrgs(String userId, String direction);
+
+    Result<List<String>> getOrgIds(String tenantId, String userId, String direction);
 
     /**
      * 判断帐号是否存在
@@ -84,7 +88,7 @@ public interface SsoUserService extends IService<SsoUser> {
 
     boolean isExistUserOrg(String userId, String orgId);
 
-    List<SimpleUserInfo> searchUserList(String  condition);
+    List<SimpleUserInfo> searchUserList(String condition);
 
     UserInfo getUserInfo(String userId);
 
