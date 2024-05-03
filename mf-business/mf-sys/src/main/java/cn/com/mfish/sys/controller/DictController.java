@@ -40,8 +40,8 @@ public class DictController {
     /**
      * 分页列表查询
      *
-     * @param reqDict
-     * @return
+     * @param reqDict 查询参数
+     * @return 字典分页数据
      */
     @Operation(summary = "字典-分页列表查询", description = "字典-分页列表查询")
     @GetMapping

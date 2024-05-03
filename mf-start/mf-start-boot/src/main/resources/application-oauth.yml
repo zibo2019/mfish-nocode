@@ -20,8 +20,9 @@ redisSession:
 oauth2:
   expire:
     code: 180
-    token: 21600
-    refreshToken: 604800
+#    token: 21600 # 6小时
+    token: 604800 # 7天
+    refreshToken: 604800 # 7天
   login:
     mutex: false
   user:

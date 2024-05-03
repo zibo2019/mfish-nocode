@@ -16,6 +16,6 @@ code:
     path: template
   savePath:
     #前端地址
-    front: E:/webcode
+    front: D:\OpenSourceProjects
     #后端地址（需要指定到具体模块路径）
-    back: E:/javacode/mfish-nocode/mf-business/mf-sys
+    back: D:\OpenSourceProjects\mfish-nocode\mf-business\mf-web
