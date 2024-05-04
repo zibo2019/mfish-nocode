@@ -11,4 +11,12 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface CardService extends IService<Card> {
 
+    /**
+     * 根据母版ID删除所有卡片
+     *
+     * @param parentId 母版ID
+     * @return 是否删除成功
+     */
+    boolean deleteByParentId(String parentId);
+
 }

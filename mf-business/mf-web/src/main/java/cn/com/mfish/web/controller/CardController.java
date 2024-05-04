@@ -153,8 +153,12 @@ public class CardController {
     @Operation(summary = "卡片-通过id删除")
     @DeleteMapping("/{id}")
     @RequiresPermissions("sys:card:delete")
+    @Transactional(rollbackFor = Exception.class)
     public Result<Boolean> delete(@Parameter(name = "id", description = "唯一性ID") @PathVariable String id) {
-        if (cardService.removeById(id)) {
+        // 理论上讲，删除一个卡片，应该将所有的子卡片都删除
+        // 通过 ID 查询出原数据
+        Card card = cardService.getById(id);
+        if (cardService.deleteByParentId(card.getParentId())) {
             return Result.ok(true, "卡片-删除成功!");
         }
         return Result.fail(false, "错误:卡片-删除失败!");
