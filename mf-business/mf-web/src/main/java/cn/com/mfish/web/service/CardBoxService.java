@@ -30,4 +30,19 @@ public interface CardBoxService extends IService<CardBox> {
      */
     List<Card> listCardByBoxId(String boxId);
 
+    /**
+     * 根据卡片ID以及多个要加入的盒子ID，将卡片加入到盒子中
+     * @param cardId 卡片ID
+     * @param boxIds 盒子ID列表
+     */
+    boolean addCardToBox(String cardId, List<String> boxIds);
+
+    /**
+     * 根据卡片ID和盒子ID删除卡片盒子关联
+     * @param cardId 卡片ID
+     * @param boxId 盒子ID
+     * @return 是否删除成功
+     */
+    boolean removeCardFromBox(String cardId, String boxId);
+
 }

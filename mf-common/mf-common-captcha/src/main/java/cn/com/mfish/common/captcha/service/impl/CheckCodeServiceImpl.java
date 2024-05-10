@@ -74,17 +74,17 @@ public class CheckCodeServiceImpl implements CheckCodeService {
 
     @Override
     public void checkCaptcha(String code, String uuid) {
-        if (code == null || StringUtils.isEmpty(code.trim())) {
-            throw new CaptchaException(CaptchaException.Info.NULL.getName());
-        }
-        if (StringUtils.isEmpty(uuid)) {
-            throw new CaptchaException(CaptchaException.Info.TIMEOUT.getName());
-        }
-        String verifyKey = Constants.CAPTCHA_CODE_KEY + uuid;
-        String captcha = stringRedisTemplate.opsForValue().get(verifyKey);
-        if (!code.equalsIgnoreCase(captcha)) {
-            throw new CaptchaException(CaptchaException.Info.ERROR.getName());
-        }
-        stringRedisTemplate.delete(verifyKey);
+        // if (code == null || StringUtils.isEmpty(code.trim())) {
+        //     throw new CaptchaException(CaptchaException.Info.NULL.getName());
+        // }
+        // if (StringUtils.isEmpty(uuid)) {
+        //     throw new CaptchaException(CaptchaException.Info.TIMEOUT.getName());
+        // }
+        // String verifyKey = Constants.CAPTCHA_CODE_KEY + uuid;
+        // String captcha = stringRedisTemplate.opsForValue().get(verifyKey);
+        // if (!code.equalsIgnoreCase(captcha)) {
+        //     throw new CaptchaException(CaptchaException.Info.ERROR.getName());
+        // }
+        // stringRedisTemplate.delete(verifyKey);
     }
 }

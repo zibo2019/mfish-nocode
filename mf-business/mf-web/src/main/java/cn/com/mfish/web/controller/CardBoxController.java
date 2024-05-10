@@ -185,6 +185,31 @@ public class CardBoxController {
     }
 
     /**
+     * 根据卡片ID以及多个要加入的盒子ID，将卡片加入到盒子中
+     * @param cardId 卡片ID
+     * @param boxIds 盒子ID列表
+     */
+    @Operation(summary = "卡片-根据卡片ID以及多个要加入的盒子ID，将卡片加入到盒子中")
+    @PostMapping("/addCardToBox/{cardId}")
+    @RequiresPermissions("sys:card:insert")
+    public Result<Boolean> addCardToBox(@Parameter(name = "cardId", description = "卡片ID") @PathVariable String cardId, @RequestBody List<String> boxIds) {
+        return Result.ok(cardBoxService.addCardToBox(cardId, boxIds), "卡片-加入盒子成功!");
+    }
+
+    /**
+     * 根据卡片ID和盒子ID删除卡片盒子关联
+     * @param cardId 卡片ID
+     * @param boxId 盒子ID
+     * @return 是否删除成功
+     */
+    @Operation(summary = "卡片-根据卡片ID和盒子ID删除卡片盒子关联")
+    @DeleteMapping("/removeCardFromBox/{cardId}/{boxId}")
+    @RequiresPermissions("sys:card:delete")
+    public Result<Boolean> removeCardFromBox(@Parameter(name = "cardId", description = "卡片ID") @PathVariable String cardId, @Parameter(name = "boxId", description = "盒子ID") @PathVariable String boxId) {
+        return Result.ok(cardBoxService.removeCardFromBox(cardId, boxId), "卡片-删除盒子成功!");
+    }
+
+    /**
      * 导出
      *
      * @param reqCardBox 卡片盒子中间表请求参数
