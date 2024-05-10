@@ -1,0 +1,42 @@
+# 停止容器
+docker stop video-app
+
+# 启动容器
+docker run \
+-itd \
+--rm \
+-p 8081:8081 \
+-v /home/docker/video:/app \
+-v /home/docker/video/logs:/logs \
+--name video-app \
+openjdk:17-jdk \
+java -jar /app/app.jar --server.port=8081
+
+# 查看实时日志
+http://www.qad520.com:9001/
+
+
+
+### 镜像方式启动
+# 构建镜像
+docker build -t video-app-image .
+# 删除镜像
+docker rmi video-app-image
+
+# 启动容器
+docker run -itd -p 8081:8080 -v /home/zibo/docker/video/app:/app --name video-app video-app-image
+
+# 重启容器
+docker restart video-app
+
+# 删除容器
+docker rm video-app
+
+# 查看实时日志
+docker logs -f video-app
+
+# 进入容器内部
+docker exec -it video-app /bin/bash
+
+# 离开容器
+exit
