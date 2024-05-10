@@ -25,7 +25,7 @@ spring:
       - shiro
   data:
     redis:
-      host: localhost
+      host: 124.222.218.160
       port: 6379
 #      password: 1qaz@WSX
       database: 6
@@ -71,9 +71,9 @@ spring:
         # 主库数据源
         master:
           driver-class-name: com.mysql.cj.jdbc.Driver
-          url: jdbc:mysql://localhost:3306/mfish_nocode?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
+          url: jdbc:mysql://124.222.218.160:3306/mfish_nocode?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
           username: root
-          password: 123456
+          password: zibo15239417242
           # 从库数据源
           # slave:
           # username:
@@ -128,7 +128,7 @@ DBConnect:
 # 文件存储
 storage:
   active: local
-  address: http://localhost:8888/storage/file/
+  address: http://124.222.218.160:8888/storage/file/
   local:
     storagePath: E:/storage
   aliyun:
